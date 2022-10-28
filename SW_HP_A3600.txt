@@ -1,0 +1,154 @@
+ sysname SW11MEDINA-HP3600-PATXXXXXX
+
+ irf mac-address persistent timer
+ irf auto-update enable
+ undo irf link-delay
+
+ domain default enable system
+
+ telnet server enable
+
+vlan 1
+
+radius scheme system
+ server-type extended
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+
+user-group system
+ group-attribute allow-guest
+
+local-user admin
+ password cipher sw2008
+ authorization-attribute level 3
+ service-type ssh telnet terminal
+ service-type web
+
+ stp enable
+
+interface NULL0
+
+interface Vlan-interface1
+ ip address 10.0.6.11 255.255.255.0
+
+interface Ethernet1/0/1
+ port link-mode bridge
+
+interface Ethernet1/0/2
+ port link-mode bridge
+
+interface Ethernet1/0/3
+ port link-mode bridge
+
+interface Ethernet1/0/4
+ port link-mode bridge
+
+interface Ethernet1/0/5
+ port link-mode bridge
+
+interface Ethernet1/0/6
+ port link-mode bridge
+
+interface Ethernet1/0/7
+ port link-mode bridge
+
+interface Ethernet1/0/8
+ port link-mode bridge
+
+interface Ethernet1/0/9
+ port link-mode bridge
+
+interface Ethernet1/0/10
+ port link-mode bridge
+
+interface Ethernet1/0/11
+ port link-mode bridge
+
+interface Ethernet1/0/12
+ port link-mode bridge
+
+interface Ethernet1/0/13
+ port link-mode bridge
+
+interface Ethernet1/0/14
+ port link-mode bridge
+
+interface Ethernet1/0/15
+ port link-mode bridge
+
+interface Ethernet1/0/16
+ port link-mode bridge
+
+interface Ethernet1/0/17
+ port link-mode bridge
+
+interface Ethernet1/0/18
+ port link-mode bridge
+
+interface Ethernet1/0/19
+ port link-mode bridge
+
+interface Ethernet1/0/20
+ port link-mode bridge
+
+interface Ethernet1/0/21
+ port link-mode bridge
+
+interface Ethernet1/0/22
+ port link-mode bridge
+
+interface Ethernet1/0/23
+ port link-mode bridge
+
+interface Ethernet1/0/24
+ port link-mode bridge
+
+interface GigabitEthernet1/0/25
+ port link-mode bridge
+
+interface GigabitEthernet1/0/26
+ port link-mode bridge
+
+interface GigabitEthernet1/0/27
+ port link-mode bridge
+
+interface GigabitEthernet1/0/28
+ port link-mode bridge
+
+ ip route-static 0.0.0.0 0.0.0.0 10.0.6.40
+
+snmp-agent
+snmp-agent local-engineid 800063A203D07E28232261
+snmp-agent community read gemg
+snmp-agent community write pr0ro0vt
+snmp-agent sys-info contact alerta@email.com
+snmp-agent sys-info location CPD MEDINA - PAT XXXXXX
+snmp-agent sys-info version all
+
+ header login %
+Gerencia de Infra-Estrutura Tecnologica
+MEDINA - CPD - PAT XXXXXX
+SOMENTE USUARIOS AUTORIZADOS. OS ACESSOS SAO MONITORADOS
+%
+
+ load xml-configuration
+
+ load tr069-configuration
+
+user-interface aux 0
+ authentication-mode scheme
+ screen-length 22
+user-interface vty 0 4
+ authentication-mode scheme
+user-interface vty 5 15
+
+return
+
+
