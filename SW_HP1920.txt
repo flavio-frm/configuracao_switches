@@ -1,0 +1,135 @@
+Comandos para os Switches HP 1920
+
+acessar via porta console com velocidade de 38400
+
+_cmdline-mode on (Este comando no modo user-view libera as configurações “avançadas” do Switch via CLI.)
+Confirmar o comando com "Y"
+Após digitar o comando e confirmar aparecerá a mensagem de warning pedindo uma senha.
+A senha é: Jinhua1920unauthorized
+
+Feito isso continuar com a configuração de linha de comando abaixo
+
+
+sys
+
+
+ sysname SW11-HP1920-BACKUP
+
+ 
+domain default enable system
+
+telnet server enable
+
+vlan 1
+
+radius scheme system
+ server-type extended
+ primary authentication 127.0.0.1 1645
+ primary accounting 127.0.0.1 1646
+ user-name-format without-domain
+
+domain system
+ access-limit disable
+ state active
+ idle-cut disable
+ self-service-url disable
+
+user-group system
+ group-attribute allow-guest
+
+local-user admin
+password cipher sw2008
+authorization-attribute level 3
+service-type ssh telnet terminal
+service-type web
+
+stp enable
+
+interface NULL0
+
+interface Vlan-interface1
+ip address 10.0.9.11 255.255.255.0
+
+interface Ethernet1/0/1
+ 
+interface Ethernet1/0/2
+
+interface Ethernet1/0/3
+
+interface Ethernet1/0/4
+
+interface Ethernet1/0/5
+
+interface Ethernet1/0/6
+
+interface Ethernet1/0/7
+
+interface Ethernet1/0/8
+
+interface Ethernet1/0/9
+
+interface Ethernet1/0/10
+
+interface Ethernet1/0/11
+
+interface Ethernet1/0/12
+
+interface Ethernet1/0/13
+
+interface Ethernet1/0/14
+
+interface Ethernet1/0/15
+
+interface Ethernet1/0/16
+
+interface Ethernet1/0/17
+
+interface Ethernet1/0/18
+
+interface Ethernet1/0/19
+
+interface Ethernet1/0/20
+
+interface Ethernet1/0/21
+
+interface Ethernet1/0/22
+
+interface Ethernet1/0/23
+
+interface Ethernet1/0/24
+
+interface GigabitEthernet1/0/25
+
+interface GigabitEthernet1/0/26
+
+interface GigabitEthernet1/0/27
+
+interface GigabitEthernet1/0/28
+
+ip route-static 0.0.0.0 0.0.0.0 10.0.9.40
+
+snmp-agent
+snmp-agent local-engineid 800063A203D07E28232261
+snmp-agent community read gemg
+snmp-agent community write pr0ro0vt
+snmp-agent sys-info contact alerta@email.com
+snmp-agent sys-info location CPD-Guaxupe-NºPAT
+snmp-agent sys-info version all
+
+header login %
+Gerencia de Infra-Estrutura e Tecnologica
+GUAXUPE - CPD - PAT XXXXXX
+SOMENTE USUARIOS AUTORIZADOS. OS ACESSOS SAO MONITORADOS
+%
+
+load xml-configuration
+
+user-interface aux 0
+authentication-mode scheme
+screen-length 22
+user-interface vty 0 4
+authentication-mode scheme
+user-interface vty 5 15
+
+return
+
